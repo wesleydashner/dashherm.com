@@ -25,8 +25,7 @@ SECRET_KEY = 'mi+y4r%r-*-_77avp5lb2rifs%ung@b!zyljwcfn9nzw08w6@4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Do I need my public IP address here? It changes though...
-ALLOWED_HOSTS = ['dashherm.com', 'www.dashherm.com', '10.0.0.1', '10.0.1.1', '24.10.132.46', '10.0.0.253']
+ALLOWED_HOSTS = ['www.dashherm.com']
 
 
 # Application definition
@@ -119,6 +118,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-# Do I need to actually set BASE_DIR to something?
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
