@@ -25,7 +25,7 @@ SECRET_KEY = 'mi+y4r%r-*-_77avp5lb2rifs%ung@b!zyljwcfn9nzw08w6@4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.dashherm.com']
+ALLOWED_HOSTS = ['www.dashherm.com', 'localhost']
 
 
 # Application definition
