@@ -32,6 +32,9 @@ class DBManager:
         self.cursor.execute('DELETE FROM stalls WHERE lot_id=:lot_id AND stall_id=:stall_id',
                             {'lot_id': lot_id, 'stall_id': stall_id})
 
+    def clear(self):
+        self.cursor.execute('DELETE FROM stalls')
+
     def update_availability(self, lot_id, stall_id, is_available):
         is_available = 1 if is_available else 0
         self.cursor.execute('UPDATE stalls SET is_available=:is_available WHERE lot_id=:lot_id AND stall_id=:stall_id',
