@@ -1,7 +1,7 @@
 import sqlite3
 
 
-class DBManager:
+class StallsDBManager:
 
     def __init__(self, db_file):
         self.db_file = db_file
@@ -20,7 +20,8 @@ class DBManager:
     def close_connection(self):
         self.connection.close()
 
-    # call this method after making any changes to the database (insert, remove, update_availability)
+    # call this method after making any changes to the database
+    # (create_table, insert, remove, clear, update_availability)
     def commit(self):
         self.connection.commit()
 
@@ -43,6 +44,3 @@ class DBManager:
     def get_available_count(self, lot_id):
         self.cursor.execute('SELECT * FROM stalls WHERE lot_id=:lot_id AND is_available=1', {'lot_id': lot_id})
         return len(self.cursor.fetchall())
-
-    def make_reservation(self, user_id):
-        pass
