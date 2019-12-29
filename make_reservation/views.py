@@ -10,6 +10,5 @@ def index(request):
     user_id = request.POST.get('user_id')
     time = str(datetime.utcnow())
     if not lot_id or not user_id or not time:
-        print('something missing')
         return JsonResponse({'did_reserve': False})
     return JsonResponse({'did_reserve:': GeneralManager.make_reservation(lot_id, user_id, time)})

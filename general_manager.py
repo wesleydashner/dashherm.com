@@ -19,11 +19,7 @@ class GeneralManager:
         rm = ReservationsDBManager()
         sm = StallsDBManager()
         available_count = sm.get_available_count(lot_id)
-        print('available:')
-        print(available_count)
         reservation_count = rm.get_reservation_count(lot_id)
-        print('reserved:')
-        print(reservation_count)
         rm.close_connection()
         sm.close_connection()
         return available_count - reservation_count > 0
