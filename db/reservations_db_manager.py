@@ -1,11 +1,12 @@
 import sqlite3
+from db.db_path_manager import DBPathManager
 
 
 class ReservationsDBManager:
 
-    def __init__(self, db_file):
-        self.db_file = db_file
-        self.connection = sqlite3.connect(db_file)
+    def __init__(self):
+        self.db_file = DBPathManager.get_reservations_db_path()
+        self.connection = sqlite3.connect(self.db_file)
         self.cursor = self.connection.cursor()
 
     # only necessary when a table hasn't yet been created
@@ -35,3 +36,7 @@ class ReservationsDBManager:
 
     def clear(self):
         self.cursor.execute('DELETE FROM reservations')
+
+    def get_reservation_count(self, lot_id):
+        self.cursor.execute('SELECT * FROM reservations WHERE lot_id=:lot_id', {'lot_id': lot_id})
+        return len(self.cursor.fetchall())

@@ -1,11 +1,12 @@
 import sqlite3
+from db.db_path_manager import DBPathManager
 
 
 class StallsDBManager:
 
-    def __init__(self, db_file):
-        self.db_file = db_file
-        self.connection = sqlite3.connect(db_file)
+    def __init__(self):
+        self.db_file = DBPathManager.get_stalls_db_path()
+        self.connection = sqlite3.connect(self.db_file)
         self.cursor = self.connection.cursor()
 
     # only necessary when a table hasn't yet been created
