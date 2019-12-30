@@ -1,6 +1,7 @@
-from stalls_db_manager import StallsDBManager
+from db.stalls_db_manager import StallsDBManager
+from db.reservations_db_manager import ReservationsDBManager
 
-m = StallsDBManager()
-# m.update_availability('0000', 'A1', True)
+m = ReservationsDBManager()
+m.clear()
 m.commit()
 m.close_connection()
