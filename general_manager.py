@@ -18,10 +18,10 @@ class GeneralManager:
 
     @staticmethod
     def __can_reserve(lot_id):
-        return GeneralManager.__get_available_count_after_reservations(lot_id) > 0
+        return GeneralManager.get_reservable_stalls_count(lot_id) > 0
 
     @staticmethod
-    def __get_available_count_after_reservations(lot_id):
+    def get_reservable_stalls_count(lot_id):
         rm = ReservationsDBManager()
         sm = StallsDBManager()
         available_count = sm.get_available_count(lot_id)
@@ -29,7 +29,3 @@ class GeneralManager:
         rm.close_connection()
         sm.close_connection()
         return available_count - reservation_count
-
-    @staticmethod
-    def get_available_stalls_count(lot_id):
-        return GeneralManager.__get_available_count_after_reservations(lot_id)
