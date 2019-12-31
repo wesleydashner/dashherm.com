@@ -35,7 +35,10 @@ class GeneralManager:
         sm = StallsDBManager()
         try:
             for status in statuses:
-                sm.update_availability(lot_id, status.get('stall_id'), status.get('is_available'))
+                stall_id = status.get('stall_id')
+                is_available = status.get('is_available')
+                if not sm.update_availability(lot_id, stall_id, is_available):
+                    sm.insert(lot_id, stall_id, is_available)
             sm.commit()
             sm.close_connection()
             return True

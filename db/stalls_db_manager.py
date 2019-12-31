@@ -26,9 +26,10 @@ class StallsDBManager:
     def commit(self):
         self.connection.commit()
 
-    def insert(self, lot_id, stall_id):
-        self.cursor.execute('INSERT INTO stalls VALUES (:lot_id, :stall_id, 0)',
-                            {'lot_id': lot_id, 'stall_id': stall_id})
+    def insert(self, lot_id, stall_id, is_available):
+        is_available = 1 if is_available else 0
+        self.cursor.execute('INSERT INTO stalls VALUES (:lot_id, :stall_id, :is_available)',
+                            {'lot_id': lot_id, 'stall_id': stall_id, 'is_available': is_available})
 
     def remove(self, lot_id, stall_id):
         self.cursor.execute('DELETE FROM stalls WHERE lot_id=:lot_id AND stall_id=:stall_id',
@@ -37,10 +38,12 @@ class StallsDBManager:
     def clear(self):
         self.cursor.execute('DELETE FROM stalls')
 
+    # returns true if lot_id and stall_id combination are found
     def update_availability(self, lot_id, stall_id, is_available):
         is_available = 1 if is_available else 0
         self.cursor.execute('UPDATE stalls SET is_available=:is_available WHERE lot_id=:lot_id AND stall_id=:stall_id',
                             {'lot_id': lot_id, 'stall_id': stall_id, 'is_available': is_available})
+        return True if self.cursor.rowcount == 1 else False
 
     def get_available_count(self, lot_id):
         self.cursor.execute('SELECT * FROM stalls WHERE lot_id=:lot_id AND is_available=1', {'lot_id': lot_id})
