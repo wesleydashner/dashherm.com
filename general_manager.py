@@ -29,3 +29,15 @@ class GeneralManager:
         rm.close_connection()
         sm.close_connection()
         return available_count - reservation_count
+
+    @staticmethod
+    def update_stalls(lot_id, statuses):
+        sm = StallsDBManager()
+        try:
+            for status in statuses:
+                sm.update_availability(lot_id, status.get('stall_id'), status.get('is_available'))
+            sm.commit()
+            sm.close_connection()
+            return True
+        except KeyError:
+            return False
