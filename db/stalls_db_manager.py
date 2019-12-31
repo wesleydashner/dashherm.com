@@ -1,5 +1,5 @@
 import sqlite3
-from db.db_path_manager import DBPathManager
+from db_path_manager import DBPathManager
 
 
 class StallsDBManager:

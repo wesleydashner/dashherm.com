@@ -1,5 +1,5 @@
 import os.path
-from db.db_file_names import stalls_db, reservations_db
+from db_file_names import stalls_db, reservations_db
 
 
 class DBPathManager:
