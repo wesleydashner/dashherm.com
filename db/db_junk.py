@@ -1,5 +1,5 @@
-from stalls_db_manager import StallsDBManager
-from reservations_db_manager import ReservationsDBManager
+from db.stalls_db_manager import StallsDBManager
+from db.reservations_db_manager import ReservationsDBManager
 
 m = StallsDBManager()
 m.create_table()
