@@ -1,7 +1,7 @@
 from db.stalls_db_manager import StallsDBManager
 from db.reservations_db_manager import ReservationsDBManager
+from datetime import datetime
 
-m = StallsDBManager()
-m.create_table()
+m = ReservationsDBManager()
 m.commit()
 m.close_connection()

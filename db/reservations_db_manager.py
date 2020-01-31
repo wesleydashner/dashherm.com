@@ -10,11 +10,13 @@ class ReservationsDBManager:
         self.cursor = self.connection.cursor()
 
     # only necessary when a table hasn't yet been created
+    # status can be: created, parking, parked
     def create_table(self):
         self.cursor.execute('''CREATE TABLE reservations (
                             lot_id text,
                             user_id text,
-                            time text
+                            time text,
+                            status text
                             )''')
 
     # call this method when you're done using the manager
@@ -27,8 +29,12 @@ class ReservationsDBManager:
         self.connection.commit()
 
     def insert(self, lot_id, user_id, time):
-        self.cursor.execute('INSERT INTO reservations VALUES (:lot_id, :user_id, :time)',
-                            {'lot_id': lot_id, 'user_id': user_id, 'time': time})
+        self.cursor.execute('INSERT INTO reservations VALUES (:lot_id, :user_id, :time, :status)',
+                            {'lot_id': lot_id, 'user_id': user_id, 'time': time, 'status': 'created'})
+
+    def update_status(self, lot_id, user_id, status):
+        self.cursor.execute('UPDATE reservations SET status=:status WHERE lot_id=:lot_id AND user_id=:user_id',
+                            {'status': status, 'lot_id': lot_id, 'user_id': user_id})
 
     def remove(self, lot_id, user_id):
         self.cursor.execute('DELETE FROM reservations WHERE lot_id=:lot_id AND user_id=:user_id',
