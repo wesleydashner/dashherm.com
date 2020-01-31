@@ -17,6 +17,11 @@ class GeneralManager:
         return False
 
     @staticmethod
+    def update_reservation_status(lot_id, user_id, status):
+        rm = ReservationsDBManager()
+        return rm.update_status(lot_id, user_id, status)
+
+    @staticmethod
     def __can_reserve(lot_id):
         return GeneralManager.get_reservable_stalls_count(lot_id) > 0
 
