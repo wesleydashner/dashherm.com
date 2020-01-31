@@ -21,5 +21,6 @@ urlpatterns = [
     path('make-reservation/', include('make_reservation.urls')),
     path('reservable-stalls-count/', include('reservable_stalls_count.urls')),
     path('update-stalls/', include('update_stalls.urls')),
+    path('update-reservation-status/', include('update_reservation_status.urls')),
     path('admin/', admin.site.urls),
 ]

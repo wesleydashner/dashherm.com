@@ -19,7 +19,10 @@ class GeneralManager:
     @staticmethod
     def update_reservation_status(lot_id, user_id, status):
         rm = ReservationsDBManager()
-        return rm.update_status(lot_id, user_id, status)
+        did_update = rm.update_status(lot_id, user_id, status)
+        rm.commit()
+        rm.close_connection()
+        return did_update
 
     @staticmethod
     def __can_reserve(lot_id):

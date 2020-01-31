@@ -32,7 +32,7 @@ class ReservationsDBManager:
         self.cursor.execute('INSERT INTO reservations VALUES (:lot_id, :user_id, :time, :status)',
                             {'lot_id': lot_id, 'user_id': user_id, 'time': time, 'status': 'created'})
 
-    # returns True is lot_id and user_id combination are found
+    # returns True if lot_id and user_id combination are found
     def update_status(self, lot_id, user_id, status):
         self.cursor.execute('UPDATE reservations SET status=:status WHERE lot_id=:lot_id AND user_id=:user_id',
                             {'status': status, 'lot_id': lot_id, 'user_id': user_id})
