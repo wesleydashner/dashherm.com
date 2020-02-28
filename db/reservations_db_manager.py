@@ -46,5 +46,5 @@ class ReservationsDBManager:
         self.cursor.execute('DELETE FROM reservations')
 
     def get_reservation_count(self, lot_id):
-        self.cursor.execute('SELECT * FROM reservations WHERE lot_id=:lot_id', {'lot_id': lot_id})
+        self.cursor.execute('SELECT * FROM reservations WHERE lot_id=:lot_id AND (status=:created OR status=:parking)', {'lot_id': lot_id, 'created': 'created', 'parking': 'parking'})
         return len(self.cursor.fetchall())
