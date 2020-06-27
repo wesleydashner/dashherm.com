@@ -1,4 +1,5 @@
 # www.dashherm.com api
+This is a Django project I host on a raspberry pi that handles all the following requests:
 * /make-reservation/ (POST)
     * request parameters
         * lot_id \<string\>
